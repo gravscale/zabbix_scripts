@@ -1,9 +1,8 @@
 #!/bin/bash
 
 cat << EOF > /usr/local/sbin/get_zabbix_ospf_routes_number
-#!/bin/vbash
-source /opt/vyatta/etc/functions/script-template
-run show ip route | egrep "^O" | wc -l > /tmp/zabbix_ospf_routes_number
+#!/bin/bash
+vtysh -c 'show ip route ospf' | wc -l > /tmp/zabbix_ospf_routes_number
 EOF
 
 chmod 0755 /usr/local/sbin/get_zabbix_ospf_routes_number
